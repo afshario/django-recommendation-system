@@ -27,22 +27,32 @@ class Article(models.Model):
 
 
 class Tag(models.Model):
+      '''
+      Tag model
+      '''
       title = models.CharField(max_length=255)
 
 class Comment(models.Model):
+      '''
+      Comments model with unique author and article objects
+      '''
       author = models.ForeignKey(User,on_delete=models.CASCADE)
       content = models.TextField(max_length= 400)
       article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments")
       class Meta:
+            # This doesn't allow multiple comments from one user on the same article.
             unique_together = ('author', 'article')
 
 class Vote(models.Model):
+      '''
+      Vote model with unique voter and article objects
+      '''
       VOTE_TYPES = (
             ('up', 'Upvote'),
             ('down', 'Downvote'),
       )
-      voter = models.ForeignKey(User,on_delete=models.CASCADE,related_name= 'votes')
-      article = models.ForeignKey(Article,on_delete=models.CASCADE,related_name= 'articles')
+      voter = models.ForeignKey(User,on_delete=models.CASCADE)
+      article = models.ForeignKey(Article,on_delete=models.CASCADE,related_name= 'votes')
       type = models.CharField(max_length=4, choices=VOTE_TYPES)
       class Meta:
             unique_together = ('voter', 'article')
