@@ -24,3 +24,7 @@ class Article(models.Model):
       tags = models.ManyToManyField('Tag', related_name="articles")
       is_open = models.BooleanField(default=True)
       published = models.BooleanField(default=False)
+
+
+class Tag(models.Model):
+      title = models.CharField(max_length=255)
