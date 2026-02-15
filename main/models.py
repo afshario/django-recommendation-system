@@ -28,3 +28,10 @@ class Article(models.Model):
 
 class Tag(models.Model):
       title = models.CharField(max_length=255)
+
+class Comment(models.Model):
+      author = models.ForeignKey(User,on_delete=models.CASCADE)
+      content = models.TextField(max_length= 400)
+      article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="comments")
+      class Meta:
+            unique_together = ('author', 'article')
