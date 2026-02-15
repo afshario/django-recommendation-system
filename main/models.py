@@ -12,3 +12,15 @@ class User(AbstractUser):
 
       USERNAME_FIELD = "email"
       
+class Article(models.Model):
+      '''
+      Article model
+      '''
+      author = models.ForeignKey(User,on_delete=models.CASCADE ,related_name="articles")
+      title = models.CharField(max_length=255)
+      content = models.TextField()
+      uvotec = models.PositiveIntegerField(default=0)
+      dvotec = models.PositiveIntegerField(default=0)
+      tags = models.ManyToManyField('Tag', related_name="articles")
+      is_open = models.BooleanField(default=True)
+      published = models.BooleanField(default=False)
