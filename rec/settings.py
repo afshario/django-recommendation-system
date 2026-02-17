@@ -131,5 +131,15 @@ AUTH_USER_MODEL = 'main.User'
 
 # REST framework config
 REST_FRAMEWORK = {
-
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }
+
+# Email configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = '127.0.0.1'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = False
+# Site configuration
+SITE_DOMAIN = 'http://localhost:8000'
