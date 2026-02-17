@@ -7,7 +7,7 @@ class User(AbstractUser):
       '''
       username = models.CharField(max_length=250,unique=True)
       email = models.EmailField(unique=True)
-      is_active = models.BooleanField(default= False)
+      is_active = models.BooleanField(default= True)
       is_staff = models.BooleanField(default= False)
       
 class Article(models.Model):
